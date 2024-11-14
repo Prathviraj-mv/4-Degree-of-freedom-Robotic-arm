@@ -1,5 +1,8 @@
 # Robotic-arm
 
+<p>
+  <img src="IMAGES/WhatsApp Image 2024-11-14 at 19.35.08.jpeg">
+</p>
 
 # STEP MODEL
 <p>
