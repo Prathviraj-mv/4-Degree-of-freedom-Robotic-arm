@@ -8,7 +8,7 @@ Smooth Motion Control: Uses PWM control for seamless and precise servo actuation
 Customizable Inputs: Can be controlled via potentiometers, joysticks, or programmable interfaces like a microcontroller or computer.
 Compact Design: Lightweight and sturdy structure suitable for small to medium loads.
 <p>
-  <img src="IMAGES/WhatsApp Image 2024-11-14 at 19.35.08.jpeg">
+  <img src="IMAGES/IMG_20241129_195953.jpg">
 </p>
 
 # STEP MODEL
