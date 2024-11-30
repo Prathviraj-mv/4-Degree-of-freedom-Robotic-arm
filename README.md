@@ -13,7 +13,7 @@ Compact Design: Lightweight and sturdy structure suitable for small to medium lo
 
 # CIRCUIT
 <p>
-  <img width=80% src="IMAGES/IMG_20241130_122155.jpg">
+  <img width=50% src="IMAGES/IMG_20241130_122155.jpg">
 </p>
 
 
