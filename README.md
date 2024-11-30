@@ -11,6 +11,12 @@ Compact Design: Lightweight and sturdy structure suitable for small to medium lo
   <img src="IMAGES/IMG_20241129_195953.jpg">
 </p>
 
+# CIRCUIT
+<p>
+  <img src="IMAGES/IMG_20241130_122155.jpg">
+</p>
+
+
 # STEP MODEL
 <p>
   <img src="IMAGES/Screenshot 2024-10-29 192417.png">
