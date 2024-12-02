@@ -15,6 +15,7 @@ Compact Design: Lightweight and sturdy structure suitable for small to medium lo
 <p>
   <img width=30% src="IMAGES/IMG_20241130_122155.jpg">
 </p>
+With printed case:
 <p>
   <img width=30% src="IMAGES/IMG_20241201_215521.jpg">
 </p>
