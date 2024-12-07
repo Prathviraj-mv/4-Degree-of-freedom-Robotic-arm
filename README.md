@@ -9,7 +9,7 @@ Customizable Inputs: Can be controlled via potentiometers, joysticks, or program
 Compact Design: Lightweight and sturdy structure suitable for small to medium loads.
 
 <p>
-  <img width=80% src="IMAGES/IMG_20241207_124422.jpg">
+  <img width=80% src="IMAGES/IMG_20241207_125614.jpg">
 </p>  
 <p>
   <img width =80% src="IMAGES/IMG_20241129_195953.jpg">
