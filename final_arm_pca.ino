@@ -3,42 +3,62 @@
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
+#define SERVO_MIN 150
+#define SERVO_MAX 600
+#define SMOOTHNESS 5
+#define THRESHOLD 10
+
 const int potPins[] = {A1, A2, A3, A6, A7};
-const int numPots = 5;
+int potValues[5] = {0, 0, 0, 0, 0};
+int lastPotValues[5] = {0, 0, 0, 0, 0};
 
-const int servoMin = 150;
-const int servoMax_180 = 600;
-const int servoMax_360 = 1000;
-const int threshold = 5;
-const int servoChannel[] = {0, 1, 2, 3, 4};
-
-int lastPotValues[numPots] = {0};
+const int servoChannels[] = {0, 1, 2, 3, 4};
 
 void setup() {
-  Serial.begin(9600);
   pwm.begin();
   pwm.setPWMFreq(50);
+  for (int i = 0; i < 5; i++) {
+    potValues[i] = analogRead(potPins[i]);
+  }
 }
 
 void loop() {
-  for (int i = 0; i < numPots; i++) {
-    int potValue = analogRead(potPins[i]);
-    int mappedValue = map(potValue, 0, 1023, servoMin, (i == 0 ? servoMax_360 : servoMax_180));
+  int totalAngle = 0;
 
-    if (abs(potValue - lastPotValues[i]) > threshold) {
+  for (int i = 0; i < 5; i++) {
+    int potValue = analogRead(potPins[i]);
+    if (abs(potValue - lastPotValues[i]) > THRESHOLD) {
       lastPotValues[i] = potValue;
 
-      int targetPulse = mappedValue;
-      int currentPulse = pwm.getPWM(servoChannel[i]);
-      int step = (targetPulse > currentPulse) ? 5 : -5;
-
-      for (int pulse = currentPulse; abs(targetPulse - pulse) > abs(step); pulse += step) {
-        pwm.setPWM(servoChannel[i], 0, pulse);
-        delay(20);
+      if (i == 4) {  // A7 (base), 360-degree range
+        potValues[i] = map(potValue, 0, 1023, 0, 360);
+      } else {  // Other servos, 180-degree range
+        potValues[i] = map(potValue, 0, 1023, 0, 180 / 5);
       }
+    }
+    totalAngle += potValues[i];
+  }
 
-      pwm.setPWM(servoChannel[i], 0, targetPulse);
+  if (totalAngle <= 180) {
+    for (int i = 0; i < 5; i++) {
+      int currentAngle = potValues[i];
+      int pulseWidth = map(currentAngle, 0, (i == 4 ? 360 : 180), SERVO_MIN, SERVO_MAX);
+      moveServoSmoothly(servoChannels[i], pulseWidth);
     }
   }
-  delay(100);
+
+  delay(50);
+}
+
+void moveServoSmoothly(int channel, int targetPulse) {
+  static int currentPulse[5] = {SERVO_MIN, SERVO_MIN, SERVO_MIN, SERVO_MIN, SERVO_MIN};
+  while (currentPulse[channel] != targetPulse) {
+    if (currentPulse[channel] < targetPulse) {
+      currentPulse[channel] += SMOOTHNESS;
+    } else {
+      currentPulse[channel] -= SMOOTHNESS;
+    }
+    pwm.setPWM(channel, 0, currentPulse[channel]);
+    delay(10);
+  }
 }
