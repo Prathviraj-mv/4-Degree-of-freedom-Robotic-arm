@@ -19,7 +19,7 @@ const int servoPin4 = 9;
 const int servoPin5 = 10;
 
 void setup() {
-  // Attach each servo to its pin
+  
   servo1.attach(servoPin1);
   servo2.attach(servoPin2);
   servo3.attach(servoPin3);
@@ -28,7 +28,7 @@ void setup() {
 }
 
 void loop() {
-  // Read each potentiometer and set corresponding servo position
+  
   int potValue1 = analogRead(potPin1);
   int angle1 = map(potValue1, 0, 1023, 0, 180);
   servo1.write(angle1);
@@ -49,5 +49,5 @@ void loop() {
   int angle5 = map(potValue5, 0, 1023, 0, 180);
   servo5.write(angle5);
 
-  delay(15); // Short delay to allow the servos to move smoothly
+  delay(15); 
 }
